@@ -36,45 +36,62 @@ useEffect(() => {
       date: new Date().toLocaleString()
     };
 
-    // Save order and clear cart
+    
 const orderHistory = JSON.parse(localStorage.getItem("orders")) || [];
-orderHistory.push(order); // add this order to full history
-localStorage.setItem("orders", JSON.stringify(orderHistory)); // 🔁 keeps all old orders
+orderHistory.push(order); 
+localStorage.setItem("orders", JSON.stringify(orderHistory)); 
 
-localStorage.setItem("lastOrder", JSON.stringify(order)); // ✅ just for order confirmation
+localStorage.setItem("lastOrder", JSON.stringify(order)); 
 
-    setCart([]); // localStorage will auto-sync via CartProvider
+    setCart([]); 
 
     navigate("/OrderConfirmation");
   };
 
   return (
-    <div className="p-6 max-w-xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Checkout</h1>
+ <div className="p-6 max-w-xl mx-auto mt-10 bg-white rounded-xl shadow-lg">
+  <h1 className="text-2xl font-bold mb-6 text-green-600 mb-5 pb-2">Checkout</h1>
 
-      <textarea
-        placeholder="Enter your shipping address..."
-        className="w-full border p-3 mb-4 rounded"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-      ></textarea>
+  <label className="block text-gray-700 font-medium mb-2" htmlFor="address">
+  Shipping Address
+</label>
+<input
+  id="address"
+  type="text"
+  placeholder="Enter your shipping address..."
+  className="w-full border border-gray-300 p-3 mb-6 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+  value={address}
+  onChange={(e) => setAddress(e.target.value)}
+/>
 
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold mb-2">Your Items:</h2>
-        {cart.map((item) => (
-          <p key={item.id}>🛍 {item.name} — ₹{item.price}</p>
-        ))}
-      </div>
+  <div className="mb-6">
+    <h2 className="text-lg font-semibold mb-3 text-gray-800">Your Items</h2>
+    <ul className="divide-y divide-gray-200">
+      {cart.map((item) => (
+        <li
+          key={item.id}
+          className="flex justify-between py-2 text-gray-700"
+        >
+          <span>{item.name}</span>
+          <span>₹{item.price}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
 
-      <p className="text-right font-bold text-xl mb-4">Total: ₹{total}</p>
+  <p className="text-right font-bold text-xl text-gray-900 mb-6">
+    Total: ₹{total}
+  </p>
 
-      <button
-        onClick={handlePlaceOrder}
-        className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
-      >
-        Place Order
-      </button>
-    </div>
+  <button
+    onClick={handlePlaceOrder}
+    className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-lg transition duration-200"
+  >
+    Place Order
+  </button>
+</div>
+
+
   );
 };
 
