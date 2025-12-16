@@ -64,17 +64,18 @@ Access to the Admin Dashboard is strictly role-based (via `AuthContext`):
     ```
 
     The application should now be running at `http://localhost:5173`.
+    
 
-## 🗺️ Routes
+## 📁 Key Directories and Files
 
-| Path | Component | Required Role | Description |
-| :--- | :--- | :--- | :--- |
-| `/login` | `LoginPage` | Public | Handles user authentication. |
-| `/` | `ProductsPage` | Public | Main shopping area with filtering. |
-| `/cart` | `CartPage` | User/Admin | View, manage, and calculate cart contents. |
-| `/checkout` | `CheckoutPage` | User/Admin | Mock checkout process. |
-| `/admin` | `AdminDashboard` | Admin Only | Product CRUD interface. |
-| `/product/edit/:id` | `ProductEditPage` | Admin Only | Interface to edit product details. |
+| Directory/File | Purpose |
+| :--- | :--- |
+| **`/context`** | Holds all React Context definitions (`AuthContext.jsx`, etc.) and their respective Provider components (`AuthProvider.jsx`, etc.). |
+| **`/admin`** | Contains components specific to the Administrator role, such as `AdminDashboard.jsx`. |
+| **`/components`** | Houses reusable UI components like `Navbar.jsx`, `ProductList.jsx`, and `CartDisplay.jsx`. |
+| **`App.jsx`** | Main component responsible for setting up routing and wrapping the application with all necessary Context Providers. |
+| **`Login.jsx`** | Component handling user authentication and role switching. |
+| **`MyOrders.jsx`** | Component displaying a history of mock user orders. |
 
 ## 🧠 Key Development Concepts
 
@@ -84,4 +85,7 @@ The project showcases best practices in React development:
   * **Props-Driven Design:** Components are designed to be reusable and rely on clean property passing for data flow, minimizing prop drilling through Context.
   * **LocalStorage Syncing:** The `CartContext` and `AuthContext` utilize `useEffect` to read data from and write data to `localStorage` on initial load and state changes, ensuring data continuity.
 
-[Check out the working](https://www.linkedin.com/posts/arunima-paunikar_just-built-a-react-based-frontend-prototype-activity-7353082961296060417-S_lO?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFVAoLwB4TsHeMyyZJcyeoRwfyry9ndycrE)
+
+[[Check out the Demo Video here -> ](https://youtu.be/xbPHyyQ-ZQY?si=99D8cTRSxVkqiXws)]
+
+[Check out the post](https://www.linkedin.com/posts/arunima-paunikar_just-built-a-react-based-frontend-prototype-activity-7353082961296060417-S_lO?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFVAoLwB4TsHeMyyZJcyeoRwfyry9ndycrE)
